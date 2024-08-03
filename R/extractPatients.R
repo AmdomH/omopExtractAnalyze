@@ -34,9 +34,7 @@ extractPatients <- function(connection) {
       YEAR(co.condition_start_date),
       MONTH(co.condition_start_date)
     ORDER BY
-      condition,
-      year,
-      month
+      count DESC
   "
 
   # Render the SQL for the specific dialect
