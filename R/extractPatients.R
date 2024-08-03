@@ -21,22 +21,20 @@
 extractPatients <- function(connection) {
   sql <- "
     SELECT
-      co.condition_concept_id,
-      c.concept_name AS condition_name,
+      c.concept_name AS condition,
       YEAR(co.condition_start_date) AS year,
       MONTH(co.condition_start_date) AS month,
-      COUNT(DISTINCT co.person_id) AS count
+      COUNT(*) AS count
     FROM
       @cdm_database_schema.condition_occurrence co
     JOIN
       @cdm_database_schema.concept c ON co.condition_concept_id = c.concept_id
     GROUP BY
-      co.condition_concept_id,
       c.concept_name,
       YEAR(co.condition_start_date),
       MONTH(co.condition_start_date)
     ORDER BY
-      co.condition_concept_id,
+      condition,
       year,
       month
   "
