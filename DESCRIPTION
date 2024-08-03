@@ -16,5 +16,6 @@ Imports:
   SqlRender,
   dplyr,
   DatabaseConnector,
-  Eunomia
+  Eunomia,
+  ggplot2
 
