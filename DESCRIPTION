@@ -17,5 +17,6 @@ Imports:
   dplyr,
   DatabaseConnector,
   Eunomia,
-  ggplot2
+  ggplot2,
+  shiny
 
