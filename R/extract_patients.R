@@ -19,9 +19,6 @@
 #' DatabaseConnector::disconnect(connection)
 #' }
 extractPatients <- function(connection) {
-  # Function body remains the same
-}
-extractPatients <- function(connection) {
   sql <- "
     SELECT
       co.condition_concept_id,
