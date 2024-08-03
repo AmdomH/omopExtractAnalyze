@@ -1,15 +1,26 @@
-
-
 #' Extract Patient Condition Counts
 #'
 #' This function extracts counts of all conditions by year and month from the
 #' condition occurrence table in an OMOP CDM database.
 #'
 #' @param connection A database connection object
+#'
 #' @return A data frame with columns: condition_concept_id, condition_name, year, month, count
 #' @export
 #' @importFrom SqlRender render translate
 #' @importFrom dplyr collect
+#' @importFrom SqlRender render translate
+#' @importFrom dplyr collect
+#' @examples
+#' \dontrun{
+#' connection <- DatabaseConnector::connect(Eunomia::getEunomiaConnectionDetails())
+#' patient_data <- extractPatients(connection)
+#' head(patient_data)
+#' DatabaseConnector::disconnect(connection)
+#' }
+extractPatients <- function(connection) {
+  # Function body remains the same
+}
 extractPatients <- function(connection) {
   sql <- "
     SELECT

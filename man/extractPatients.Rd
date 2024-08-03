@@ -16,3 +16,11 @@ A data frame with columns: condition_concept_id, condition_name, year, month, co
 This function extracts counts of all conditions by year and month from the
 condition occurrence table in an OMOP CDM database.
 }
+\examples{
+\dontrun{
+connection <- DatabaseConnector::connect(Eunomia::getEunomiaConnectionDetails())
+patient_data <- extractPatients(connection)
+head(patient_data)
+DatabaseConnector::disconnect(connection)
+}
+}
