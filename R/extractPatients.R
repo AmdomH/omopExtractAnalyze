@@ -50,4 +50,3 @@ extractPatients <- function(connection) {
 
   return(result)
 }
-
