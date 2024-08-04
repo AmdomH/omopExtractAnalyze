@@ -22,8 +22,11 @@ plotTrend <- function(data, byMonth = FALSE) {
   library(ggplot2)
   library(dplyr)
 
+  # data <- data %>%
+  #   mutate(period = ifelse(byMonth, paste(year, month, sep = "-"), as.character(year)))
   data <- data %>%
-    mutate(period = ifelse(byMonth, paste(year, month, sep = "-"), as.character(year)))
+    mutate(period = ifelse(byMonth, as.Date(paste(year, month, "01", sep = "-")), as.Date(paste(year, "01", "01", sep = "-"))))
+
 
   # Convert condition to factor
   data$condition <- as.factor(data$condition)
