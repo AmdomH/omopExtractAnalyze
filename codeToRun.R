@@ -23,6 +23,7 @@ DatabaseConnector::disconnect(connection)
 result%>%
   plotTrend(condition = "Viral sinusitis")
 
+
 # Test the plotTrend function for yearly data, all conditions
 result%>%
   plotTrend()
@@ -34,6 +35,10 @@ result%>%
 # Test the plotTrend function for months data, all conditions
 result%>%
   plotTrend(byMonth = TRUE)
+
+# Test the plotTrend function for yearly data, condition = "Hep B", non existent
+result%>%
+  plotTrend(condition = "Hep B")
 
 
 #3 Test the function:  function()
