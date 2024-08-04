@@ -6,6 +6,7 @@
 #'
 #' @param data A data frame with columns: condition, year, month, count
 #' @param byMonth Logical, if TRUE, plot by month; otherwise, plot by year (default)
+#' @param condition Character, a specific condition to filter by. If NULL, plots all conditions (default: NULL)
 #'
 #' @return A ggplot2 object
 #' @export
@@ -18,24 +19,41 @@
 #' plotTrend(patient_data)
 #' DatabaseConnector::disconnect(connection)
 #' }
-plotTrend <- function(data, byMonth = FALSE) {
+plotTrend <- function(data, byMonth = FALSE, condition=NULL) {
   library(ggplot2)
   library(dplyr)
 
-  # data <- data %>%
-  #   mutate(period = ifelse(byMonth, paste(year, month, sep = "-"), as.character(year)))
-  data <- data %>%
-    mutate(period = ifelse(byMonth, as.Date(paste(year, month, "01", sep = "-")), as.Date(paste(year, "01", "01", sep = "-"))))
+  if (!is.null(condition)) {
+    data <- data %>% filter(condition == !!condition)
+  }
 
+  if (byMonth) {
+    # Create df_month for monthly trends
+    df_month <- data %>%
+      group_by(condition, year, month) %>%
+      summarise(total_count = sum(count, na.rm = TRUE)) %>%
+      ungroup()
 
-  # Convert condition to factor
-  data$condition <- as.factor(data$condition)
+    # Plot monthly trends
+    p <- ggplot(df_month, aes(x = factor(month), y = total_count, group = interaction(year, condition), color = as.factor(year))) +
+      geom_line() +
+      facet_wrap(~ condition, scales = "free_y") +
+      labs(x = "Month", y = "Number of Patients", title = ifelse(is.null(condition), "Condition Trends Over Time", paste("Condition Trend for:", condition))) +
+      theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  } else {
+    # Create df_year for yearly trends
+    df_year <- data %>%
+      group_by(condition, year) %>%
+      summarise(total_count = sum(count, na.rm = TRUE)) %>%
+      ungroup()
 
-  p <- ggplot(data, aes(x = period, y = count, group = condition, color = condition)) +
-    geom_line() +
-    facet_wrap(~ condition, scales = "free_y") +
-    labs(x = ifelse(byMonth, "Month", "Year"), y = "Number of Patients", title = "Condition Trends Over Time") +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    # Plot yearly trends
+    p <- ggplot(df_year, aes(x = factor(year), y = total_count, group = condition, color = condition)) +
+      geom_line() +
+      facet_wrap(~ condition, scales = "free_y") +
+      labs(x = "Year", y = "Number of Patients", title = ifelse(is.null(condition), "Condition Trends Over Time", paste("Condition Trend for:", condition))) +
+      theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  }
 
   return(p)
 }
