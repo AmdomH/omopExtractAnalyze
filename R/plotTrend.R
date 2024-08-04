@@ -6,7 +6,7 @@
 #'
 #' @param data A data frame with columns: condition, year, month, count
 #' @param byMonth Logical, if TRUE, plot by month; otherwise, plot by year (default)
-#' @param condition Character, a specific condition to filter by. If NULL, plots all conditions (default: NULL)
+#' @param condition Character, a specific condition to filter by. If NULL, plots all conditions (default: NULL), CASE SENSITIVE
 #'
 #' @return A ggplot2 object
 #' @export
@@ -19,9 +19,14 @@
 #' plotTrend(patient_data)
 #' DatabaseConnector::disconnect(connection)
 #' }
-plotTrend <- function(data, byMonth = FALSE, condition=NULL) {
+plotTrend <- function(data, byMonthonth = FALSE, condition=NULL) {
   library(ggplot2)
   library(dplyr)
+
+  #Function returns message if the inputed condition doesn't exist
+  if (!is.null(condition) && !(condition %in% data$condition)) {
+    stop("Condition not found in the data.")
+  }
 
   if (!is.null(condition)) {
     data <- data %>% filter(condition == !!condition)
