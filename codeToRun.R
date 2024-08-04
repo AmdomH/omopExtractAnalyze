@@ -22,6 +22,7 @@ DatabaseConnector::disconnect(connection)
 # Test the plotTrend function for yearly data, condition = "Viral sinusitis"
 result%>%
   plotTrend(condition = "Viral sinusitis")
+
 # Test the plotTrend function for yearly data, all conditions
 result%>%
   plotTrend()
@@ -33,6 +34,7 @@ result%>%
 # Test the plotTrend function for months data, all conditions
 result%>%
   plotTrend(byMonth = TRUE)
+
 
 #3 Test the function:  function()
 launchShinyApp()
