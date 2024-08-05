@@ -9,8 +9,6 @@
 #' @export
 #' @importFrom SqlRender render translate
 #' @importFrom dplyr collect
-#' @importFrom SqlRender render translate
-#' @importFrom dplyr collect
 #' @examples
 #' \dontrun{
 #' connection <- DatabaseConnector::connect(Eunomia::getEunomiaConnectionDetails())
@@ -38,7 +36,7 @@ extractPatients <- function(connection) {
   "
 
   # Render the SQL for the specific dialect
-  rendered_sql <- SqlRender::render(sql, cdm_database_schema = "main")
+  rendered_sql <- SqlRender::render(sql, cdm_database_schema = "main") #"main" is schema name of Eunomia
   translated_sql <- SqlRender::translate(rendered_sql, targetDialect = connection@dbms)
 
   # Execute the query and return the results as a data frame
