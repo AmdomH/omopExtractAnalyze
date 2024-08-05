@@ -10,7 +10,7 @@ extractPatients(connection)
 \item{connection}{A database connection object}
 }
 \value{
-A data frame with columns: condition_concept_id, condition_name, year, month, count
+A data frame with columns: condition, year, month, count
 }
 \description{
 This function extracts counts of all conditions by year and month from the

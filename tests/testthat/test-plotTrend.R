@@ -3,7 +3,7 @@ library(omopExtractAnalyze)
 library(ggplot2)
 
 test_that("plotTrend returns a ggplot object", {
-  skip_on_cran()
+  #skip_on_cran()
 
   connection <- DatabaseConnector::connect(Eunomia::getEunomiaConnectionDetails())
   on.exit(DatabaseConnector::disconnect(connection))
@@ -15,7 +15,7 @@ test_that("plotTrend returns a ggplot object", {
 })
 
 test_that("plotTrend works with monthly data", {
-  skip_on_cran()
+  #skip_on_cran()
 
   connection <- DatabaseConnector::connect(Eunomia::getEunomiaConnectionDetails())
   on.exit(DatabaseConnector::disconnect(connection))

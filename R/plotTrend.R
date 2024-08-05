@@ -19,7 +19,7 @@
 #' plotTrend(patient_data)
 #' DatabaseConnector::disconnect(connection)
 #' }
-plotTrend <- function(data, byMonthonth = FALSE, condition=NULL) {
+plotTrend <- function(data, byMonth = FALSE, condition=NULL) {
   library(ggplot2)
   library(dplyr)
 

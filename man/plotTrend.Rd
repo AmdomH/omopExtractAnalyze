@@ -4,14 +4,14 @@
 \alias{plotTrend}
 \title{Plot Patient Condition Trends}
 \usage{
-plotTrend(data, byMonth = FALSE, condition = NULL)
+plotTrend(data, byMonthonth = FALSE, condition = NULL)
 }
 \arguments{
 \item{data}{A data frame with columns: condition, year, month, count}
 
-\item{byMonth}{Logical, if TRUE, plot by month; otherwise, plot by year (default)}
+\item{condition}{Character, a specific condition to filter by. If NULL, plots all conditions (default: NULL), CASE SENSITIVE}
 
-\item{condition}{Character, a specific condition to filter by. If NULL, plots all conditions (default: NULL)}
+\item{byMonth}{Logical, if TRUE, plot by month; otherwise, plot by year (default)}
 }
 \value{
 A ggplot2 object
