@@ -5,7 +5,7 @@
 #'
 #' @param connection A database connection object
 #'
-#' @return A data frame with columns: condition_concept_id, condition_name, year, month, count
+#' @return A data frame with columns: condition, year, month, count
 #' @export
 #' @importFrom SqlRender render translate
 #' @importFrom dplyr collect
