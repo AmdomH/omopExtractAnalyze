@@ -2,6 +2,7 @@ library(testthat)
 library(omopExtractAnalyze)
 library(ggplot2)
 
+#Test plotTrend default (Yearly)
 test_that("plotTrend returns a ggplot object", {
   #skip_on_cran()
 
@@ -14,6 +15,7 @@ test_that("plotTrend returns a ggplot object", {
   expect_s3_class(plot, "ggplot")
 })
 
+#Test plotTrend Monthly
 test_that("plotTrend works with monthly data", {
   #skip_on_cran()
 
