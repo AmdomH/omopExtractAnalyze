@@ -46,13 +46,15 @@ install.packages(c("DBI", "SqlRender", "DatabaseConnector", "ggplot2", "shiny"))
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
+library(Eunomia)
 library(omopExtractAnalyze)
 # Establish a database connection
-connection <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+connection <- DatabaseConnector::connect(Eunomia::getEunomiaConnectionDetails())
 
 # Extract patient data
 patient_data <- extractPatients(connection)
-
+# Disconnect
+DatabaseConnector::disconnect(connection)
 # Plot the trend by year
 plotTrend(patient_data)
 
