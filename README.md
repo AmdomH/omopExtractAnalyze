@@ -40,7 +40,7 @@ devtools::install_github("AmdomH/omopExtractAnalyze")
 Ensure you have the following packages installed:
 
 ``` r
-install.packages(c("DBI", "SqlRender", "DatabaseConnector", "ggplot2", "shiny"))
+install.packages(c("Eunomia", "SqlRender", "DatabaseConnector", "ggplot2", "shiny"))
 ```
 
 This is a basic example which shows you how to solve a common problem:
