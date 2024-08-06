@@ -3,6 +3,7 @@ library(DatabaseConnector)
 library(ggplot2)
 library(dplyr)
 library(shiny)
+if(!require("omopExtractAnalyze")) devtools::install_github("AmdomH/omopExtractAnalyze")
 library(omopExtractAnalyze)
 # Get connection to Eunomia test database
 connection <- DatabaseConnector::connect(Eunomia::getEunomiaConnectionDetails())
